@@ -1,0 +1,3 @@
+.ng-invalid.ng-touched:not(form){ /* aplica a todos menos no form*/
+    border: 1px solid red;
+}

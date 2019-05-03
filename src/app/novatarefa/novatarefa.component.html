@@ -1,0 +1,34 @@
+<form #f="ngForm" class="jumbotron" (ngSubmit)="onSubmit(f)">
+  <h3>Inserir nova tarefa</h3>
+    <div class="form-group">
+      <label>Tarefa</label>
+      <input type="text" class="form-control"  name="nome_tarefa" [ngModel]="tarefa.nome_tarefa" required #nome_tarefa="ngModel">
+        <div *ngIf="!nome_tarefa.valid && nome_tarefa.touched" class="alert alert-danger" role="alert">
+          Por favor digite a tarefa.
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Importancia</label>
+        <select class="form-control" name="importancia" [ngModel]="tarefa.importancia" required #importancia="ngModel">
+          <option value="nenhuma">Nenhuma</option>
+          <option value="baixa">Baixa</option>
+          <option value="media">Media</option>
+          <option value="alta">Alta</option>
+          <option value="ferrou">Ferrou</option>
+        </select>
+        <div *ngIf="!importancia.valid && importancia.touched" class="alert alert-danger" role="alert">
+            Escolha a importancia
+          </div>
+      </div>
+      <div class="form-group">
+          <input type="text" placeholder="Data de realização" class="form-control" bsDatepicker name="data" [ngModel]="tarefa.data" required #data="ngModel">
+          <div *ngIf="!data.valid && data.touched" class="alert alert-danger" role="alert">
+              Escolha uma data
+            </div>
+      </div>
+
+        <alert type="success"  *ngIf="msgTask">
+          <strong>Tarefa adicionada com sucesso!</strong>
+        </alert>
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">ADD</button>
+</form>
